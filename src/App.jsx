@@ -9,7 +9,6 @@ import { ChakraProvider } from '@chakra-ui/react';
 import '@fontsource/black-han-sans/400.css';
 import '@fontsource/roboto-slab/500.css';
 import '@fontsource/open-sans/300.css';
-import theme from '../src/utils/styles/theme.js';
 // views import
 import Home from '../src/views/home/Home';
 import UserSignUp from '../src/views/user-auth/UserSignUp';
