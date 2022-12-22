@@ -1,19 +1,17 @@
 import React from 'react';
 import { Box, Heading, Button, ButtonGroup } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import UserSignInImage from '../../assets/img/usersignin.png';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const initialValues = {
   email: '',
   password: '',
-};
-
-const onSubmit = (values) => {
-  console.log('form data', values);
 };
 
 const validationSchema = Yup.object({
@@ -22,6 +20,33 @@ const validationSchema = Yup.object({
 });
 
 const UserSignIn = () => {
+  const navigate = useNavigate();
+
+  const onSubmit = async (values) => {
+    console.log(values);
+    const email = values.email;
+    const password = values.password;
+    try {
+      const { data } = await axios.post(
+        'http://localhost:9090/api/user/login',
+        {
+          email,
+          password,
+        }
+      );
+      if (data) {
+        console.log(data);
+        const result = await axios.get(
+          `http://localhost:9090/api/user/login/${email}`
+        );
+        localStorage.setItem('userInfo', JSON.stringify(result.data));
+        navigate('/home');
+      }
+    } catch (err) {
+      toast.error(err);
+    }
+  };
+
   return (
     <Box display="flex">
       <Box
