@@ -35,11 +35,7 @@ const UserSignIn = () => {
         }
       );
       if (data) {
-        console.log(data);
-        const result = await axios.get(
-          `http://localhost:9090/api/user/login/${email}`
-        );
-        localStorage.setItem('userInfo', JSON.stringify(result.data));
+        localStorage.setItem('userInfo', JSON.stringify(data));
         navigate('/home');
       }
     } catch (err) {
