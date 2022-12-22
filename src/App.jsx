@@ -2,6 +2,8 @@ import * as React from 'react';
 
 // react tools imports
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // styling imports
 import { ChakraProvider } from '@chakra-ui/react';
@@ -23,6 +25,7 @@ import '@fontsource/open-sans/300.css';
 function App() {
   return (
     <ChakraProvider theme={theme}>
+      <ToastContainer position="bottom-center" limit={1} />
       <Router>
         <div className="App">
           <div className="content">

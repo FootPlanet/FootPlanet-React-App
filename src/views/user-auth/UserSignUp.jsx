@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 // toolbox imports
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Box, Flex } from '@chakra-ui/react';
 import { Heading, Button } from '@chakra-ui/react';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 // import static files
 import RegistrationBG from '../../assets/img/user_registration_bg.png';
@@ -15,14 +17,10 @@ const initialValues = {
   password: '',
   cPassword: '',
   fullName: '',
-  profile: {
-    owner: '',
-    player: '',
-  },
-};
-
-const onSubmit = (values) => {
-  console.log('form data', values);
+  // profile: {
+  //   owner: '',
+  //   player: '',
+  // },
 };
 
 const validationSchema = Yup.object({
@@ -30,10 +28,34 @@ const validationSchema = Yup.object({
   password: Yup.string().required('Required field'),
   cPassword: Yup.string().required('Required field'),
   fullName: Yup.string().required('Required field'),
-  profile: Yup.string().required('Required field'),
+  // profile: Yup.string().required('Required field'),
 });
 
 const UserSignUp = () => {
+  const navigate = useNavigate();
+
+  const onSubmit = async (values) => {
+    const email = values.email;
+    const password = values.password;
+    const cPassword = values.cPassword;
+    const fullname = values.fullName;
+    if (password !== cPassword) {
+      toast.error('Passwords do not match!');
+      return;
+    }
+    try {
+      const { data } = await axios.post('http://localhost:9090/api/user', {
+        email,
+        password,
+        fullname,
+      });
+      toast.success('User created!');
+      navigate('/user-signin');
+    } catch (err) {
+      toast.error(err);
+    }
+  };
+
   return (
     <Box display="flex">
       <Box
@@ -176,7 +198,7 @@ const UserSignUp = () => {
               style={{ color: '#19D2C2' }}
             />
             <br />
-            <label
+            {/* <label
               htmlFor="profile"
               style={{ color: '#D9D9D9', fontSize: '0.85rem' }}
             >
@@ -198,7 +220,7 @@ const UserSignUp = () => {
               <option value="1">Player</option>
               <option value="2">Owner</option>
             </select>
-            <br />
+            <br /> */}
             <br />
             <Button type="submit" w="100%" bg="#0AADE8">
               Sign up
