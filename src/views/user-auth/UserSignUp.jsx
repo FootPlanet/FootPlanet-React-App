@@ -44,11 +44,14 @@ const UserSignUp = () => {
       return;
     }
     try {
-      const { data } = await axios.post('http://localhost:9090/api/user', {
-        email,
-        password,
-        fullname,
-      });
+      const { data } = await axios.post(
+        'https://footplanet-backend.herokuapp.com/api/user',
+        {
+          email,
+          password,
+          fullname,
+        }
+      );
       toast.success('User created!');
       navigate('/user-signin');
     } catch (err) {
