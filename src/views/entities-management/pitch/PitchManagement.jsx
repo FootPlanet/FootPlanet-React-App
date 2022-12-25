@@ -2,6 +2,8 @@ import React from "react";
 
 import AdminToolbar from "../../../components/navigation/AdminToolbar";
 import PitchManagementToolbar from "../../../components/navigation/PitchManagamentToolbar";
+import PitchCardsNavigation from '../../../components/navigation/PitchCardsNavigation'
+
 // external toolbox imports
 import {
   Box,
@@ -164,6 +166,7 @@ const PitchManagement = () => {
           </Center>
         </Flex>
       </Grid>
+      <PitchCardsNavigation/>
     </Box>
   );
 };
