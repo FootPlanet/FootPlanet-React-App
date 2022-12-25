@@ -64,7 +64,6 @@ const UserSignUp = () => {
       <Box
         bgImage={RegistrationBG}
         w="40%"
-        h="100vh"
         bgPosition="center"
         bgSize="100%"
       />
