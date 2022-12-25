@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const LandingPageNavbar = () => {
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={6} padding="1% 2%">
+    <Grid templateColumns="repeat(3, 1fr)" gap={6} padding="1% 2%" bg="#010101">
       <Flex>
         <Center>
           <Link to="/">
@@ -40,15 +40,34 @@ const LandingPageNavbar = () => {
           </Link>
         </Center>
       </Flex>
-      <Flex>
+      <Flex justifyContent="space-evenly">
         <Center>
           <Link to="/user-signin">
-            <Box as="button" fontSize="22px" padding="5% 10%" borderRadius="10%" width="5rem" color='#0AADE8' _hover={{ bg: '#ebedf0' }}>
+            <Box
+              as="button"
+              fontSize="22px"
+              padding="5% 10%"
+              borderRadius="10%"
+              width="5rem"
+              color="#0AADE8"
+              _hover={{ bg: "#090909" }}
+            >
               Log in
             </Box>
           </Link>
+        </Center>
+        <Center>
           <Link to="/user-signup">
-            <Box as="button" fontSize="22px" padding="5% 10%" borderRadius="2%" bg="#0AADE8" width="10rem" color='#F5F5F5' _hover={{ bg: '#00506d' }}>
+            <Box
+              as="button"
+              fontSize="22px"
+              padding="5% 10%"
+              borderRadius="2%"
+              bg="#0AADE8"
+              width="10rem"
+              color="#F5F5F5"
+              _hover={{ bg: "#00506d" }}
+            >
               Get started
             </Box>
           </Link>

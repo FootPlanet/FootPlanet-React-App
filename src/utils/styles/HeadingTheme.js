@@ -13,7 +13,8 @@ const welcomeMessage = defineStyle({
 
 const navLink = defineStyle({
   fontFamily: 'Open Sans',
-  fontSize: '1.25rem'
+  fontSize: '1.2rem',
+  color: '#F9F9F9'
 })
 
 const helperMessage = defineStyle({
