@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 // toolbox imports
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { Heading, Button } from '@chakra-ui/react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -64,7 +64,6 @@ const UserSignUp = () => {
       <Box
         bgImage={RegistrationBG}
         w="40%"
-        h="100vh"
         bgPosition="center"
         bgSize="100%"
       />

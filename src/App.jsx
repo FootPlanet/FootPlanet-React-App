@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // styling imports
 import { ChakraProvider } from '@chakra-ui/react';
-
 import '@fontsource/black-han-sans/400.css';
 import '@fontsource/roboto-slab/500.css';
 import '@fontsource/open-sans/300.css';
@@ -15,6 +14,7 @@ import '@fontsource/open-sans/300.css';
 import Home from '../src/views/home/Home';
 import UserSignUp from '../src/views/user-auth/UserSignUp';
 import UserSignIn from '../src/views/user-auth/UserSignIn';
+import PitchManagement from '../src/views/entities-management/pitch/PitchManagement'
 
 // static files import
 import theme from '../src/utils/styles/theme';
@@ -33,6 +33,7 @@ function App() {
               <Route exact path="/" element={<Home />}></Route>
               <Route exact path="/user-signup" element={<UserSignUp />}></Route>
               <Route exact path="/user-signin" element={<UserSignIn />}></Route>
+              <Route exact path="/pitch-management" element={<PitchManagement />}></Route>
             </Routes>
           </div>
         </div>

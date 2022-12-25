@@ -11,6 +11,12 @@ const welcomeMessage = defineStyle({
   fontSize: '1.8rem',
 });
 
+const navLink = defineStyle({
+  fontFamily: 'Open Sans',
+  fontSize: '1.2rem',
+  color: '#F9F9F9'
+})
+
 const helperMessage = defineStyle({
   fontFamily: 'Open Sans',
   color: '#D6D6D6',
@@ -21,6 +27,7 @@ const HeadingTheme = defineStyleConfig({
     logo: logo,
     welcomeMessage: welcomeMessage,
     helperMessage: helperMessage,
+    navLink: navLink
   },
 });
 
