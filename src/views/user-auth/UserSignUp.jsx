@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 // toolbox imports
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { Heading, Button } from '@chakra-ui/react';
 import { toast } from 'react-toastify';
 import axios from 'axios';

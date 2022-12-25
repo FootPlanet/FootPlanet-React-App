@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // styling imports
 import { ChakraProvider } from '@chakra-ui/react';
-
 import '@fontsource/black-han-sans/400.css';
 import '@fontsource/roboto-slab/500.css';
 import '@fontsource/open-sans/300.css';
