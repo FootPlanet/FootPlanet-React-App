@@ -22,6 +22,7 @@ import '@fontsource/black-han-sans/400.css';
 import '@fontsource/roboto-slab/500.css';
 import '@fontsource/open-sans/300.css';
 import ComplexeManagement from './views/entities-management/complexe/ComplexeManagement';
+import ComplexeCreation from './views/entities-management/complexe/ComplexeCreation';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route exact path="/user-signin" element={<UserSignIn />}></Route>
               <Route exact path="/pitch-management" element={<PitchManagement />}></Route>
               <Route exact path="/complexe-management" element={<ComplexeManagement />}></Route>
+              <Route exact path="/complexe-creation-form" element={<ComplexeCreation />}></Route>
             </Routes>
           </div>
         </div>
