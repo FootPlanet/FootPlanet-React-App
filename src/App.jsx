@@ -37,7 +37,6 @@ function App() {
               <Route exact path="/user-signin" element={<UserSignIn />}></Route>
               <Route exact path="/pitch-management" element={<PitchManagement />}></Route>
               <Route exact path="/complexe-management" element={<ComplexeManagement />}></Route>
-              <Route exact path="/complexe-creation-form" element={<ComplexeCreation />}></Route>
             </Routes>
           </div>
         </div>

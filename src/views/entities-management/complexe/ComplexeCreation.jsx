@@ -62,7 +62,6 @@ const imageUpload = async (e) => {
 
   return (
     <Box bg="#080808" h="100vh">
-      <AdminToolbar />
       <Box p="0% 4%" m="4% 0%">
         <Text color="#fff">ADD A NEW COMPLEXE</Text>
       </Box>
