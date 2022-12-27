@@ -21,7 +21,8 @@ import {
   FaRegFutbol,
 } from "react-icons/fa";
 
-const ComplexeManagamentToolbar = () => {
+
+const ComplexeManagamentToolbar = ({setShowView, setShowCreation}) => {
   return (
     <Box bg="#101010" padding="1% 2%">
       <Flex alignItems="center" justifyContent="space-evenly" width="50%">
@@ -59,7 +60,10 @@ const ComplexeManagamentToolbar = () => {
           </Center>
         </Flex>
         <Flex alignItems="center" justifyContent="space-evenly">
-          <Link to="/complexe-creation-form">
+          <Link onClick={() => {
+            setShowCreation(true);
+            setShowView(false);
+          }}>
             <Box
               as="button"
               fontSize="15px"
@@ -78,7 +82,10 @@ const ComplexeManagamentToolbar = () => {
             </Box>
           </Link>
 
-          <Link to="/complexe-management">
+          <Link onClick={() => {
+            setShowView(true);
+            setShowCreation(false);
+          }}>
             <Box
               as="button"
               fontSize="15px"

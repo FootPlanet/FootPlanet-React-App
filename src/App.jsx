@@ -23,6 +23,7 @@ import '@fontsource/roboto-slab/500.css';
 import '@fontsource/open-sans/300.css';
 import ComplexeManagement from './views/entities-management/complexe/ComplexeManagement';
 
+
 function App() {
   return (
     <ChakraProvider theme={theme}>
