@@ -21,6 +21,7 @@ import {
   FaRegFutbol,
 } from "react-icons/fa";
 
+
 const ComplexeManagamentToolbar = ({setShowView, setShowCreation}) => {
   return (
     <Box bg="#101010" padding="1% 2%">
@@ -64,6 +65,7 @@ const ComplexeManagamentToolbar = ({setShowView, setShowCreation}) => {
             setShowView(false);
           }}>
             <Box
+              as="button"
               fontSize="15px"
               padding="5%"
               borderRadius="2%"
