@@ -22,6 +22,7 @@ import '@fontsource/black-han-sans/400.css';
 import '@fontsource/roboto-slab/500.css';
 import '@fontsource/open-sans/300.css';
 import ComplexeManagement from './views/entities-management/complexe/ComplexeManagement';
+import AdminSignIn from './views/user-auth/AdminSignIn';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route exact path="/user-signin" element={<UserSignIn />}></Route>
               <Route exact path="/pitch-management" element={<PitchManagement />}></Route>
               <Route exact path="/complexe-management" element={<ComplexeManagement />}></Route>
+              <Route exact path="/admin-signin" element={<AdminSignIn />}></Route>
             </Routes>
           </div>
         </div>
