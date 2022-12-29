@@ -37,6 +37,8 @@ const UserSignIn = () => {
       if (data) {
         localStorage.setItem('userInfo', JSON.stringify(data));
         navigate('/home');
+      }else {
+        toast.error("Email or password incorrect");
       }
     } catch (err) {
       toast.error(err);
