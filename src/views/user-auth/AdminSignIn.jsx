@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
   password: Yup.string().required('Required field'),
 });
 
-const UserSignIn = () => {
+const AdminSignIn = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {
@@ -33,9 +33,9 @@ const UserSignIn = () => {
           password,
         }
       );
-      if (data) {
-        localStorage.setItem('userInfo', JSON.stringify(data));
-        navigate('/home');
+      if (data.type === 1) {
+        localStorage.setItem('adminInfo', JSON.stringify(data));
+        navigate('/complexe-management');
       }else {
         toast.error("Email or password incorrect");
       }
@@ -59,16 +59,7 @@ const UserSignIn = () => {
           <span style={{ color: '#0AADE8' }}>Planet</span>
         </Heading>
         <Heading variant="welcomeMessage" as="h3" noOfLines={1}>
-          <span>Welcome back</span>
-        </Heading>
-        <Heading variant="helperMessage" as="h6" size="m" noOfLines={1}>
-          <span>don't have an account ? </span>
-          <Link
-            to="/user-signup"
-            style={{ color: '#0AADE8', margin: '0 0 0 1%' }}
-          >
-            sign up
-          </Link>
+          <span>Admin Sign In</span>
         </Heading>
 
         <Formik
@@ -142,4 +133,4 @@ const UserSignIn = () => {
   );
 };
 
-export default UserSignIn;
+export default AdminSignIn;
