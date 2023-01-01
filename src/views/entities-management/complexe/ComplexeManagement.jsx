@@ -53,6 +53,8 @@ const ComplexeManagement = () => {
     loading: true,
     error: '',
   });
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(4);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,7 +78,7 @@ const ComplexeManagement = () => {
       <Box>
         <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
           <Flex>
-            {complexes.map(c => (
+            {complexes.slice(start,end).map(c => (
             <Center p="0 0.5%" key={c.complexeId}>
               <Card maxW="sm" bg="#101010">
                 <CardBody>
@@ -84,7 +86,7 @@ const ComplexeManagement = () => {
                     src={c.photo ? c.photo : noImage}
                     alt={c.name}
                     borderRadius="lg"
-                    style={{width: '250px', height: '200px'}}
+                    style={{width: '100%', height: '200px'}}
                   />
                   <Stack mt="6" spacing="3">
                     <Heading size="md" color="#F5F5F5">{c.name}</Heading>
@@ -209,7 +211,7 @@ const ComplexeManagement = () => {
             </Center> */}
           </Flex>
       </Grid>
-      <ComplexeCardsNavigation/>
+      <ComplexeCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={complexes.length} />
       </Box>) 
       : showCreation && (<ComplexeCreation/>)}
     </Box>
