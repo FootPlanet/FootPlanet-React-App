@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // chakra UI api
 import {
@@ -22,7 +22,18 @@ import {
 } from "react-icons/fa";
 
 
-const ComplexeManagamentToolbar = ({setShowView, setShowCreation}) => {
+const ComplexeManagamentToolbar = ({setShowView, setShowCreation, setShowMyComplexes, complexes, dispatch}) => {
+  const [searchComplexe, setSearchComplexe] = useState('');
+
+  const searchHandler = () => {
+    dispatch({
+      type: 'FILTER_SUCCESS',
+      payload: complexes.filter((c) =>
+        c.name.toLowerCase().includes(searchComplexe.toLowerCase())
+      ),
+    });
+  }
+
   return (
     <Box bg="#101010" padding="1% 2%">
       <Flex alignItems="center" justifyContent="space-evenly" width="50%">
@@ -41,26 +52,30 @@ const ComplexeManagamentToolbar = ({setShowView, setShowCreation}) => {
       >
         <Flex>
           <Center>
-            <form action="">
+            <Box>
               <Flex justifyContent="space-around">
                 <Input
                   focusBorderColor="lime"
                   placeholder="Look for a complexe"
                   width="100%"
+                  value={searchComplexe}
+                  onChange={(e) => setSearchComplexe(e.target.value)}
                 />
                 <Button
                   leftIcon={<FaSearch />}
                   colorScheme="green"
                   variant="solid"
+                  onClick={searchHandler}
                 >
                   Search
                 </Button>
               </Flex>
-            </form>
+            </Box>
           </Center>
         </Flex>
         <Flex alignItems="center" justifyContent="space-evenly">
           <Link onClick={() => {
+            setShowMyComplexes(false);
             setShowCreation(true);
             setShowView(false);
           }}>
@@ -83,6 +98,7 @@ const ComplexeManagamentToolbar = ({setShowView, setShowCreation}) => {
           </Link>
 
           <Link onClick={() => {
+            setShowMyComplexes(false);
             setShowView(true);
             setShowCreation(false);
           }}>
@@ -104,7 +120,11 @@ const ComplexeManagamentToolbar = ({setShowView, setShowCreation}) => {
             </Box>
           </Link>
 
-          <Link to="/my-complexes">
+          <Link onClick={() => {
+            setShowMyComplexes(true);
+            setShowView(false);
+            setShowCreation(false);
+          }} >
             <Box
               as="button"
               fontSize="15px"
