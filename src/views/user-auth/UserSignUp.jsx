@@ -52,8 +52,12 @@ const UserSignUp = () => {
           fullname,
         }
       );
-      toast.success('User created!');
-      navigate('/user-signin');
+      if(data) {
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        navigate('/complexe-management');
+      }else {
+        toast.error("Email already exists");
+      }
     } catch (err) {
       toast.error(err);
     }

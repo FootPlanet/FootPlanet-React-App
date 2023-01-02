@@ -23,6 +23,7 @@ import '@fontsource/roboto-slab/500.css';
 import '@fontsource/open-sans/300.css';
 import ComplexeManagement from './views/entities-management/complexe/ComplexeManagement';
 import AdminSignIn from './views/user-auth/AdminSignIn';
+import ComplexeDetails from './views/entities-management/complexe/ComplexeDetails';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
               <Route exact path="/pitch-management" element={<PitchManagement />}></Route>
               <Route exact path="/complexe-management" element={<ComplexeManagement />}></Route>
               <Route exact path="/admin-signin" element={<AdminSignIn />}></Route>
+              <Route exact path="/complexe-details/:id" element={<ComplexeDetails />}></Route>
             </Routes>
           </div>
         </div>
