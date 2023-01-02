@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
   description: Yup.string().required('Required field'),
 });
 
-const ComplexeCreation = () => {
+const ComplexeCreation = ({dispatch}) => {
 
   const [url, setUrl] = useState('');
   const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
@@ -53,6 +53,7 @@ const ComplexeCreation = () => {
             },
           }
         );
+        dispatch({ type: 'CREATE_SUCCESS' });
         toast.success('Complexe created!');
       } catch (err) {
         toast.error(err);
