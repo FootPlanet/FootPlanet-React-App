@@ -1,4 +1,4 @@
-import { Box, Button, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box, Button, Grid, GridItem, Text, Textarea } from '@chakra-ui/react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import React from 'react'
 import AdminToolbar from '../../../components/navigation/AdminToolbar'
@@ -12,6 +12,7 @@ const initialValues = {
   location:'',
   latitude:'',
   longitude:'',
+  description:'',
 };
 
 const validationSchema = Yup.object({
@@ -19,17 +20,20 @@ const validationSchema = Yup.object({
   location: Yup.string().required('Required field'),
   latitude: Yup.string().required('Required field'),
   longitude: Yup.string().required('Required field'),
+  description: Yup.string().required('Required field'),
 });
 
 const ComplexeCreation = () => {
 
   const [url, setUrl] = useState('');
+  const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
 
   const onSubmit = async (values) => {
     const name = values.name;
     const location = values.location;
     const latitude = values.latitude;
     const longitude = values.longitude;
+    const description = values.description;
     const photo = url;
     if(url == '') {
       toast.error('Image is empty or not yet uploaded');
@@ -43,6 +47,10 @@ const ComplexeCreation = () => {
             latitude,
             longitude,
             photo,
+            description,
+            owner: {
+              userId: userInfo.userId,
+            },
           }
         );
         toast.success('Complexe created!');
@@ -209,6 +217,34 @@ const imageUpload = async (e) => {
                 />
                 <ErrorMessage
                   name="photo"
+                  component="small"
+                  style={{ color: '#19D2C2' }}
+                />
+                </GridItem>
+                <GridItem colSpan={1}>
+                <label
+                  htmlFor="description"
+                  style={{ color: '#D9D9D9', fontSize: '0.85rem' }}
+                >
+                  Complexe Description
+                </label>
+                <Field
+                  component="textarea"
+                  id="description"
+                  name="description"
+                  placeholder="Enter complexe description"
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#1A1D22',
+                    height: '2.5rem',
+                    border: '1px solid #12323d',
+                    fontSize: '0.85rem',
+                    padding: '0 2%',
+                    color: '#F5F5F5',
+                  }}
+                ></Field>
+                <ErrorMessage
+                  name="description"
                   component="small"
                   style={{ color: '#19D2C2' }}
                 />
