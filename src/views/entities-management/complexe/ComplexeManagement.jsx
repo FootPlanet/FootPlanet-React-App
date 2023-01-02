@@ -41,6 +41,10 @@ const reducer = (state, action) => {
       return { ...state, loading: false, complexes: action.payload, filteredComplexes: action.payload };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
+    case 'CREATE_SUCCESS':
+      return { ...state, successCreate: true };
+    case 'CREATE_RESET':
+      return { ...state, successCreate: false };
     case 'FILTER_SUCCESS':
       return { ...state, filteredComplexes: action.payload };
     default:
@@ -53,7 +57,7 @@ const ComplexeManagement = () => {
   const [showView, setShowView] = useState(true);
   const [showCreation, setShowCreation] = useState(false);
   const [showMyComplexes, setShowMyComplexes] = useState(false);
-  const [{ loading, error, complexes, filteredComplexes }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, complexes, filteredComplexes, successCreate }, dispatch] = useReducer(reducer, {
     complexes: [],
     filteredComplexes: [],
     loading: true,
@@ -79,8 +83,12 @@ const ComplexeManagement = () => {
         dispatch({ type: 'FETCH_FAIL', payload: err });
       }
     };
-    fetchData();
-  }, []);
+    if(successCreate) {
+      dispatch({ type: 'CREATE_RESET' });
+    }else {
+      fetchData();
+    }
+  }, [successCreate]);
   
 
   return (
@@ -228,7 +236,7 @@ const ComplexeManagement = () => {
       </Grid>
       <ComplexeCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={complexes.length} />
       </Box>) 
-      : showCreation ? (<ComplexeCreation/>) : showMyComplexes && (
+      : showCreation ? (<ComplexeCreation dispatch={dispatch} />) : showMyComplexes && (
         complexes.filter(c => c.owner.userId == userInfo.userId).slice(start,end).map(c => (
           <Center p="0 0.5%" key={c.complexeId}>
             <Card maxW="sm" bg="#101010">

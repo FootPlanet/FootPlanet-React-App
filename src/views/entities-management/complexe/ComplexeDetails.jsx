@@ -80,8 +80,9 @@ const ComplexeDetails = () => {
         };
         if(successUpdate) {
             dispatch({ type: 'UPDATE_RESET' });
+        }else {
+          fetchData();
         }
-        fetchData();
       }, [id, successUpdate]);
 
     useEffect(() => {
@@ -175,14 +176,16 @@ const ComplexeDetails = () => {
         <Box p="0% 4%" m="4% 0%">
             <Text color="#fff">COMPLEXE DETAILS</Text>
         </Box>
-        <Flex p="0% 4%" w="50%" gap={6} >
-                <Button type="button" w="100%" colorScheme='green' leftIcon={<FaEdit/>} onClick={() => setFormulaire(!formulaire)} >
-                    EDIT THIS COMPLEXE
-                </Button>
-                <Button type="button" w="100%" colorScheme='red' leftIcon={<FaTrash/>} onClick={() => deleteHandler(id)} >
-                    DELETE THIS COMPLEXE
-                </Button>
-        </Flex>
+        {userInfo.userId == complexe.owner.userId && (
+          <Flex p="0% 4%" w="50%" gap={6} >
+              <Button type="button" w="100%" colorScheme='green' leftIcon={<FaEdit/>} onClick={() => setFormulaire(!formulaire)} >
+                  EDIT THIS COMPLEXE
+              </Button>
+              <Button type="button" w="100%" colorScheme='red' leftIcon={<FaTrash/>} onClick={() => deleteHandler(id)} >
+                  DELETE THIS COMPLEXE
+              </Button>
+          </Flex>
+        )}
         <Box ref={editbox} hidden={!formulaire}>
             <Box p="0% 4%" m="4% 0%">
                 <Text color="#fff">EDIT COMPLEXE</Text>
