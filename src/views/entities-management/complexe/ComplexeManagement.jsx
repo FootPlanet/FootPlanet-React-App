@@ -38,9 +38,11 @@ const reducer = (state, action) => {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, loading: false, complexes: action.payload };
+      return { ...state, loading: false, complexes: action.payload, filteredComplexes: action.payload };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
+    case 'FILTER_SUCCESS':
+      return { ...state, filteredComplexes: action.payload };
     default:
       return state;
   }
@@ -50,8 +52,10 @@ const ComplexeManagement = () => {
   const navigate = useNavigate();
   const [showView, setShowView] = useState(true);
   const [showCreation, setShowCreation] = useState(false);
-  const [{ loading, error, complexes }, dispatch] = useReducer(reducer, {
+  const [showMyComplexes, setShowMyComplexes] = useState(false);
+  const [{ loading, error, complexes, filteredComplexes }, dispatch] = useReducer(reducer, {
     complexes: [],
+    filteredComplexes: [],
     loading: true,
     error: '',
   });
@@ -82,12 +86,12 @@ const ComplexeManagement = () => {
   return (
     <Box bg="#080808" h="100%">
       <AdminToolbar />
-      <ComplexeManagementToolbar setShowView={setShowView} setShowCreation={setShowCreation} />
+      <ComplexeManagementToolbar setShowView={setShowView} setShowCreation={setShowCreation} setShowMyComplexes={setShowMyComplexes} complexes={complexes} dispatch={dispatch} />
       {showView ? (
       <Box>
         <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
           <Flex>
-            {complexes.slice(start,end).map(c => (
+            {filteredComplexes.slice(start,end).map(c => (
             <Center p="0 0.5%" key={c.complexeId}>
               <Card maxW="sm" bg="#101010">
                 <CardBody>
@@ -224,7 +228,45 @@ const ComplexeManagement = () => {
       </Grid>
       <ComplexeCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={complexes.length} />
       </Box>) 
-      : showCreation && (<ComplexeCreation/>)}
+      : showCreation ? (<ComplexeCreation/>) : showMyComplexes && (
+        complexes.filter(c => c.owner.userId == userInfo.userId).slice(start,end).map(c => (
+          <Center p="0 0.5%" key={c.complexeId}>
+            <Card maxW="sm" bg="#101010">
+              <CardBody>
+                <Image
+                  src={c.photo ? c.photo : noImage}
+                  alt={c.name}
+                  borderRadius="lg"
+                  style={{width: '100%', height: '200px'}}
+                />
+                <Stack mt="6" spacing="3">
+                  <Heading size="md" color="#F5F5F5">{c.name}</Heading>
+                  <Flex alignItems="center">
+                    <FaMapMarkerAlt color="#F5F5F5"/>
+                    <Text color="#F5F5F5">{c.location}</Text>
+                  </Flex>
+                  <Text color="blue.600" fontSize="2xl">
+                    {c.numberPitchs}
+                  </Text>
+                </Stack>
+              </CardBody>
+              <Divider />
+              <CardFooter>
+                <ButtonGroup spacing="2">
+                  <Button variant="solid" colorScheme="blue">
+                    Explore pitches
+                  </Button>
+                  <Link to={`/complexe-details/${c.complexeId}`}>
+                    <Button variant="ghost" colorScheme="blue">
+                      View info
+                    </Button>
+                  </Link>
+                </ButtonGroup>
+              </CardFooter>
+            </Card>
+          </Center>
+          ))
+      )}
     </Box>
   );
 };
