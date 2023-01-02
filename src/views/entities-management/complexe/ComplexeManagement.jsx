@@ -31,6 +31,7 @@ import TestPitch from '../../../assets/img/pitch_test.jpg'
 import ComplexeCreation from "./ComplexeCreation";
 import noImage from "../../../assets/img/no-image.png";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -46,6 +47,7 @@ const reducer = (state, action) => {
 };
 
 const ComplexeManagement = () => {
+  const navigate = useNavigate();
   const [showView, setShowView] = useState(true);
   const [showCreation, setShowCreation] = useState(false);
   const [{ loading, error, complexes }, dispatch] = useReducer(reducer, {
@@ -55,6 +57,13 @@ const ComplexeManagement = () => {
   });
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(4);
+  const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+
+  useEffect(() => {
+    if(!userInfo) {
+      navigate("/user-signin");
+    }
+  }, [navigate, userInfo]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,9 +114,11 @@ const ComplexeManagement = () => {
                     <Button variant="solid" colorScheme="blue">
                       Explore pitches
                     </Button>
-                    <Button variant="ghost" colorScheme="blue">
-                      View info
-                    </Button>
+                    <Link to={`/complexe-details/${c.complexeId}`}>
+                      <Button variant="ghost" colorScheme="blue">
+                        View info
+                      </Button>
+                    </Link>
                   </ButtonGroup>
                 </CardFooter>
               </Card>
