@@ -234,7 +234,7 @@ const ComplexeManagement = () => {
             </Center> */}
           </Flex>
       </Grid>
-      <ComplexeCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={complexes.length} />
+      <ComplexeCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredComplexes.length} />
       </Box>) 
       : showCreation ? (<ComplexeCreation dispatch={dispatch} />) : showMyComplexes && (
         complexes.filter(c => c.owner.userId == userInfo.userId).slice(start,end).map(c => (
