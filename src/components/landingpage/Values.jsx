@@ -13,11 +13,11 @@ import {
 } from "@chakra-ui/react";
 
 // fa imports
-import { FaCheckCircle, FaHandshake } from "react-icons/fa";
+import { FaCheckCircle} from "react-icons/fa";
 
 const Values = () => {
   return (
-    <Grid>
+    <Grid id="values">
       <GridItem textAlign="center" my="2%">
         <Heading size="2xl">Our values</Heading>
       </GridItem>
