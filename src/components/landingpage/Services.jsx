@@ -27,7 +27,7 @@ import service_four from "../../assets/img/service_four.jpg";
 
 const Services = () => {
   return (
-    <Grid id="services">
+    <Grid id="services" backgroundColor="#010101">
       <GridItem textAlign="center" my="2%">
         <Heading size="2xl">Services</Heading>
       </GridItem>
