@@ -17,7 +17,8 @@ import { FaCheckCircle} from "react-icons/fa";
 
 const Values = () => {
   return (
-    <Grid id="values">
+    <Grid>
+ 
       <GridItem textAlign="center" my="2%">
         <Heading size="2xl">Our values</Heading>
       </GridItem>
