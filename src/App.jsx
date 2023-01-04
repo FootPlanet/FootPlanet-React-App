@@ -40,7 +40,7 @@ function App() {
               <Route exact path="/user-signup" element={<UserSignUp />}></Route>
               <Route exact path="/user-signin" element={<UserSignIn />}></Route>
               <Route exact path="/pitch-management" element={<PitchManagement />}></Route>
-              <Route exact path="/complexe-management" element={<ComplexeManagement />}></Route>
+              <Route exact path="/complex-management" element={<ComplexeManagement />}></Route>
               <Route exact path="/admin-signin" element={<AdminSignIn />}></Route>
               <Route exact path="/complexe-details/:id" element={<ComplexeDetails />}></Route>
               <Route exact path="/pitch-details/:id" element={<PitchDetails />}></Route>
