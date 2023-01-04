@@ -33,7 +33,7 @@ const LandingPageNavbar = () => {
           </Link>
         </Center>
         <Center>
-          <Link to="#services">
+          <Link to="#values">
             <Heading variant="navLink" as="h6" size="l">
               Our values
             </Heading>

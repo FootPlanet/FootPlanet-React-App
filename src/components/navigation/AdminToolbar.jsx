@@ -36,14 +36,14 @@ const AdminToolbar = () => {
         </Link>
       </Center>
       <Center>
-        <Link to="/complexes">
+        <Link to="/complex-management">
           <Heading variant="navLink" as="h6" size="l">
             Complexes
           </Heading>
         </Link>
       </Center>
       <Center>
-        <Link to="/pitches">
+        <Link to="/pitch-management">
           <Heading variant="navLink" as="h6" size="l">
             Pitches
           </Heading>
