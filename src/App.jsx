@@ -26,6 +26,8 @@ import '@fontsource/open-sans/300.css';
 import ComplexeManagement from './views/entities-management/complexe/ComplexeManagement';
 import AdminSignIn from './views/user-auth/AdminSignIn';
 import ComplexeDetails from './views/entities-management/complexe/ComplexeDetails';
+import TeamManagement from './views/entities-management/team/TeamManagement';
+import TeamInvites from './views/entities-management/team/TeamInvites';
 
 
 function App() {
@@ -40,10 +42,12 @@ function App() {
               <Route exact path="/user-signup" element={<UserSignUp />}></Route>
               <Route exact path="/user-signin" element={<UserSignIn />}></Route>
               <Route exact path="/pitch-management" element={<PitchManagement />}></Route>
-              <Route exact path="/complex-management" element={<ComplexeManagement />}></Route>
+              <Route exact path="/complexe-management" element={<ComplexeManagement />}></Route>
               <Route exact path="/admin-signin" element={<AdminSignIn />}></Route>
               <Route exact path="/complexe-details/:id" element={<ComplexeDetails />}></Route>
               <Route exact path="/pitch-details/:id" element={<PitchDetails />}></Route>
+              <Route exact path="/team-management" element={<TeamManagement />}></Route>
+              <Route exact path="/team-invites" element={<TeamInvites />}></Route>
             </Routes>
           </div>
         </div>
