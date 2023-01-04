@@ -29,14 +29,14 @@ const AdminToolbar = () => {
         </Link>
       </Center>
       <Center>
-        <Link to="/teams">
+        <Link to="/team-management">
           <Heading variant="navLink" as="h6" size="l">
             Teams
           </Heading>
         </Link>
       </Center>
       <Center>
-        <Link to="/complex-management">
+        <Link to="/complexe-management">
           <Heading variant="navLink" as="h6" size="l">
             Complexes
           </Heading>
