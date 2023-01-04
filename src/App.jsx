@@ -15,6 +15,8 @@ import Home from '../src/views/home/Home';
 import UserSignUp from '../src/views/user-auth/UserSignUp';
 import UserSignIn from '../src/views/user-auth/UserSignIn';
 import PitchManagement from '../src/views/entities-management/pitch/PitchManagement'
+import PitchDetails from '../src/views/entities-management/pitch/PitchDetails'
+
 
 // static files import
 import theme from '../src/utils/styles/theme';
@@ -41,6 +43,7 @@ function App() {
               <Route exact path="/complexe-management" element={<ComplexeManagement />}></Route>
               <Route exact path="/admin-signin" element={<AdminSignIn />}></Route>
               <Route exact path="/complexe-details/:id" element={<ComplexeDetails />}></Route>
+              <Route exact path="/pitch-details/:id" element={<PitchDetails />}></Route>
             </Routes>
           </div>
         </div>

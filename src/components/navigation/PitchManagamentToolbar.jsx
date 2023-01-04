@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // chakra UI api
 import {
@@ -21,7 +21,19 @@ import {
   FaRegFutbol,
 } from "react-icons/fa";
 
-const PitchManagamentToolbar = () => {
+
+const PitchManagementToolbar = ({setShowView, setShowCreation, setShowMyPitches, pitches, dispatch}) => {
+  const [searchPitches, setSearchPitches] = useState('');
+
+  const searchHandler = () => {
+    dispatch({
+      type: 'FILTER_SUCCESS',
+      payload: pitches.filter((c) =>
+        c.name.toLowerCase().includes(searchPitches.toLowerCase())
+      ),
+    });
+  }
+
   return (
     <Box bg="#101010" padding="1% 2%">
       <Flex alignItems="center" justifyContent="space-evenly" width="50%">
@@ -40,26 +52,33 @@ const PitchManagamentToolbar = () => {
       >
         <Flex>
           <Center>
-            <form action="">
+            <Box>
               <Flex justifyContent="space-around">
                 <Input
                   focusBorderColor="lime"
                   placeholder="Look for a pitch"
                   width="100%"
+                  value={searchPitches}
+                  onChange={(e) => setSearchPitches(e.target.value)}
                 />
                 <Button
                   leftIcon={<FaSearch />}
                   colorScheme="green"
                   variant="solid"
+                  onClick={searchHandler}
                 >
                   Search
                 </Button>
               </Flex>
-            </form>
+            </Box>
           </Center>
         </Flex>
         <Flex alignItems="center" justifyContent="space-evenly">
-          <Link to="/pitch-creation-form">
+          <Link onClick={() => {
+            setShowMyPitches(false);
+            setShowCreation(true);
+            setShowView(false);
+          }}>
             <Box
               as="button"
               fontSize="15px"
@@ -73,12 +92,16 @@ const PitchManagamentToolbar = () => {
             >
               <Flex alignItems="center" justifyContent="space-evenly">
                 <FaPlusCircle />
-                Add a new pitch
+                New pitch
               </Flex>
             </Box>
           </Link>
 
-          <Link to="/pitch-management">
+          <Link onClick={() => {
+            setShowMyPitches(false);
+            setShowView(true);
+            setShowCreation(false);
+          }}>
             <Box
               as="button"
               fontSize="15px"
@@ -97,7 +120,11 @@ const PitchManagamentToolbar = () => {
             </Box>
           </Link>
 
-          <Link to="/my-pitches">
+          <Link onClick={() => {
+            setShowMyPitches(true);
+            setShowView(false);
+            setShowCreation(false);
+          }} >
             <Box
               as="button"
               fontSize="15px"
@@ -121,4 +148,4 @@ const PitchManagamentToolbar = () => {
   );
 };
 
-export default PitchManagamentToolbar;
+export default PitchManagementToolbar;
