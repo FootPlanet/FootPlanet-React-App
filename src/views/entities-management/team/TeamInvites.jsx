@@ -91,7 +91,7 @@ const TeamInvites = () => {
                 <Card p="0% 4%" m="2% 4%" style={{border: '1px solid white'}} key={i.invitationId}>
                     <CardBody>
                         <Flex>
-                            <Text color="#fff">{i.sender.fullname} wants to join your team!</Text>
+                            <Text color="#fff">{i.sender.fullname} wants to join {i.team.name}</Text>
                             <Button variant="solid" colorScheme="red" m="0% 1% 0% 1%" onClick={() => declineHandler(i)} >
                                 Decline
                             </Button>
