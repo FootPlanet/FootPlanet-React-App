@@ -127,7 +127,7 @@ const PitchManagement = () => {
                         View details
                       </Button>
                     </Link>
-                    <Link to=''>
+                    <Link to={`/pitch-reservation/${c.pitchId}`}>
                       <Button variant="ghost" colorScheme="blue">
                         Make a reservation
                       </Button>
