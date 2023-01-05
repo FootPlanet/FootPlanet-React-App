@@ -60,12 +60,8 @@ const UserSignUp = () => {
           fullname,
         }
       );
-      if(data) {
-        localStorage.setItem('userInfo', JSON.stringify(data));
-        navigate('/complexe-management');
-      }else {
-        toast.error("Email already exists");
-      }
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      navigate('/complexe-management');
     } catch (err) {
       toast.error(err);
     }
