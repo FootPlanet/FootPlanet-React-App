@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useEffect, useReducer, useState } from 'react'
 import AdminToolbar from '../../../components/navigation/AdminToolbar'
 import * as Yup from 'yup';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
@@ -40,6 +40,7 @@ const initialValues = {
 };
 
 const PitchReservation = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [{ loading, error, pitch, successUpdate, successDelete }, dispatch] = useReducer(reducer, {
       pitch: null,
@@ -50,6 +51,12 @@ const PitchReservation = () => {
   const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
 
   const [reservationDate, setReservationDate] = useState(null);
+
+  useEffect(() => {
+    if(!userInfo) {
+      navigate("/user-signin");
+    }
+  }, [navigate, userInfo]);
 
   useEffect(() => {
     const fetchData = async () => {

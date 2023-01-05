@@ -28,8 +28,9 @@ import AdminSignIn from './views/user-auth/AdminSignIn';
 import ComplexeDetails from './views/entities-management/complexe/ComplexeDetails';
 import TeamManagement from './views/entities-management/team/TeamManagement';
 import TeamInvites from './views/entities-management/team/TeamInvites';
-import PitchReservation from './views/entities-management/pitch/PitchReservation';
+import PitchReservation from './views/entities-management/reservation/PitchReservation';
 import TeamDetails from './views/entities-management/team/TeamDetails';
+import UserReservation from './views/entities-management/reservation/UserReservations';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
               <Route exact path="/team-invites" element={<TeamInvites />}></Route>
               <Route exact path="/pitch-reservation/:id" element={<PitchReservation />}></Route>
               <Route exact path="/team-details/:id" element={<TeamDetails />}></Route>
+              <Route exact path="/reservations" element={<UserReservation />}></Route>
             </Routes>
           </div>
         </div>

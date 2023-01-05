@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Heading, Button, ButtonGroup } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -21,6 +21,13 @@ const validationSchema = Yup.object({
 
 const UserSignIn = () => {
   const navigate = useNavigate();
+  const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+
+  useEffect(() => {
+    if(userInfo) {
+      navigate("/complexe-management");
+    }
+  }, [navigate, userInfo]);
 
   const onSubmit = async (values) => {
     const email = values.email;
@@ -35,7 +42,7 @@ const UserSignIn = () => {
       );
       if (data) {
         localStorage.setItem('userInfo', JSON.stringify(data));
-        navigate('/complex-management');
+        navigate('/complexe-management');
       }else {
         toast.error("Email or password incorrect");
       }

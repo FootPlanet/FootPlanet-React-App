@@ -3,6 +3,7 @@ import React, { useEffect, useReducer, useState } from "react";
 import AdminToolbar from "../../../components/navigation/AdminToolbar";
 import TeamManagementToolbar from "../../../components/navigation/TeamManagamentToolbar";
 import TeamCardsNavigation from '../../../components/navigation/TeamCardsNavigation'
+import {GiPerson} from 'react-icons/gi';
 
 // external toolbox imports
 import {
@@ -32,6 +33,7 @@ import noImage from "../../../assets/img/no-image.png";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import TeamComponent from "../../../components/team/TeamComponent";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -103,26 +105,6 @@ const TeamManagement = () => {
     }
   }, [successCreate]);
 
-  const joinHandler = async(captainId, teamId) => {
-    try{
-        const {data} = await axios.post('https://footplanet-backend.herokuapp.com/api/invitation', {
-            receiver: {
-                userId: captainId,
-            },
-            sender: {
-                userId: userInfo.userId,
-            },
-            team: {
-                teamId: teamId,
-            },
-            date: Date.now(),
-            accepted: false,
-        });
-        console.log(data);
-    }catch (err) {
-        toast.error(err);
-    }
-  }
   
 
   return (
@@ -134,47 +116,7 @@ const TeamManagement = () => {
         <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
           <Flex>
             {filteredTeams.slice(start,end).map(t => (
-            <Center p="0 0.5%" key={t.teamId}>
-              <Card maxW="sm" bg="#101010">
-                <CardBody>
-                  <Stack mt="6" spacing="3">
-                    <Heading size="md" color="#F5F5F5">{t.name}</Heading>
-                    <Flex alignItems="center">
-                      <FaMapMarkerAlt color="#F5F5F5"/>
-                      <Text color="#F5F5F5">{t.captain.fullname}</Text>
-                    </Flex>
-                    <Text color="blue.600" fontSize="2xl">
-                      {t.members.length}/{t.capacity}
-                    </Text>
-                  </Stack>
-                </CardBody>
-                <Divider />
-                <CardFooter>
-                  <ButtonGroup spacing="2">
-                  {t.captain.userId == userInfo.userId ? (
-                        <Link to="/team-invites">
-                        <Button variant="solid" colorScheme="blue">
-                          Explore Invites
-                        </Button>
-                        </Link>
-                    ) : invitations.find(i => i.team.teamId == t.teamId) ? (
-                        <Button variant="solid" colorScheme="blue" disabled >
-                            Invitation Sent
-                        </Button>
-                    ) : (
-                      <Button variant="solid" colorScheme="blue" onClick={() => joinHandler(t.captain.userId, t.teamId)} >
-                        Join
-                      </Button>
-                    )}
-                    <Link to={`/team-details/${t.teamId}`}>
-                      <Button variant="ghost" colorScheme="blue">
-                        View info
-                      </Button>
-                    </Link>
-                  </ButtonGroup>
-                </CardFooter>
-              </Card>
-            </Center>
+            <TeamComponent t={t} invitations={invitations} />
             ))}
           </Flex>
       </Grid>

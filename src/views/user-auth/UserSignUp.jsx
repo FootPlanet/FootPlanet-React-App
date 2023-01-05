@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -33,6 +33,14 @@ const validationSchema = Yup.object({
 
 const UserSignUp = () => {
   const navigate = useNavigate();
+
+  const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+
+  useEffect(() => {
+    if(userInfo) {
+      navigate("/complexe-management");
+    }
+  }, [navigate, userInfo]);
 
   const onSubmit = async (values) => {
     const email = values.email;
