@@ -101,8 +101,7 @@ const PitchDetails = () => {
     const initialValues = {
         name: pitch.name,
         capacity: pitch.capacity,
-        latitude: pitch.latitude,
-        longitude: pitch.longitude,
+        price: pitch.price,
         description: pitch.description,
     };
 
@@ -174,7 +173,7 @@ const PitchDetails = () => {
         <Box p="0% 4%" m="4% 0%">
             <Text color="#fff">PITCH DETAILS</Text>
         </Box>
-        {userInfo.userId == pitch.owner.userId && (
+        {userInfo.userId === pitch.owner.userId && (
           <Flex p="0% 4%" w="50%" gap={6} >
               <Button type="button" w="100%" colorScheme='green' leftIcon={<FaEdit/>} onClick={() => setFormulaire(!formulaire)} >
                   EDIT THIS PITCH
