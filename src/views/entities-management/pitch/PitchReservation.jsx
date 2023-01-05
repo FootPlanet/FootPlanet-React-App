@@ -1,4 +1,4 @@
-import { Box, Button, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useEffect, useReducer, useState } from 'react'
 import AdminToolbar from '../../../components/navigation/AdminToolbar'
@@ -149,6 +149,10 @@ const PitchReservation = () => {
     }
   }
 
+  if(pitch == null) {
+    return;
+  }
+
   return (
     <Box bg="#080808" h="100%">
         <AdminToolbar/>
@@ -157,6 +161,7 @@ const PitchReservation = () => {
         </Box>
         <Box>
             <Box p="0% 4%">
+              <Text color="#fff">Pitch price : {pitch.price} DH</Text>
                 <Formik
                     initialValues={initialValues}
                     onSubmit={onSubmit}
@@ -237,15 +242,15 @@ const PitchReservation = () => {
                         />
                         </GridItem>
                         <br />
+                        <GridItem colSpan={2} >
                         {!isPending && (
-                            <div>
                             <PayPalButtons
                                createOrder={createOrder}
                                onApprove={onApprove}
                                onError={onError}>
                             </PayPalButtons>
-                              </div>
                         )}
+                        </GridItem>
                         <GridItem colSpan={2}>
                         <Button type="submit" w="100%" colorScheme='green'>
                         VALIDATE
