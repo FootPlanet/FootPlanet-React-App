@@ -1,6 +1,7 @@
 import { Box, Button, Card, CardBody, Flex, Text } from '@chakra-ui/react'
 import axios from 'axios';
 import React, { useEffect, useReducer } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AdminToolbar from '../../../components/navigation/AdminToolbar'
 
@@ -26,6 +27,7 @@ const reducer = (state, action) => {
   };
 
 const TeamInvites = () => {
+    const navigate = useNavigate();
     const [{ loading, error, invites, successDelete, successCreate }, dispatch] = useReducer(reducer, {
         invites: [],
         loading: true,
@@ -33,6 +35,12 @@ const TeamInvites = () => {
       });
 
       const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+
+      useEffect(() => {
+        if(!userInfo) {
+          navigate("/user-signin");
+        }
+      }, [navigate, userInfo]);
 
       useEffect(() => {
         const fetchData = async () => {

@@ -2,12 +2,17 @@ import React from 'react'
 
 // chakra UI api
 import { Grid, Flex, Center, Heading, Box } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // icons import 
 import { FaDoorOpen } from "react-icons/fa";
 
 const AdminToolbar = () => {
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+      localStorage.removeItem('userInfo');
+      navigate("/");
+  }
   return (
     <Grid templateColumns="repeat(3, 1fr)" gap={6} padding="1% 2%" bg="#010101">
     <Flex>
@@ -22,9 +27,9 @@ const AdminToolbar = () => {
     </Flex>
     <Flex justifyContent="space-evenly">
       <Center>
-        <Link to="/games">
+        <Link to="/reservations">
           <Heading variant="navLink" as="h6" size="l">
-            Games
+            Reservations
           </Heading>
         </Link>
       </Center>
@@ -67,7 +72,7 @@ const AdminToolbar = () => {
         </Link>
       </Center>
       <Center>
-        <Link href="/">
+        <Link onClick={logoutHandler} >
           <FaDoorOpen color="#0AADE8" fontSize="2rem"/>  
         </Link>
       </Center>

@@ -3,7 +3,7 @@ import { Card, CardBody } from '@chakra-ui/card';
 import { Box, Flex, Text } from '@chakra-ui/layout'
 import axios from 'axios';
 import React, { useEffect, useReducer } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import AdminToolbar from '../../../components/navigation/AdminToolbar'
 
 const reducer = (state, action) => {
@@ -20,12 +20,21 @@ const reducer = (state, action) => {
   };
 
 const TeamDetails = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [{ loading, error, team }, dispatch] = useReducer(reducer, {
         team: null,
         loading: true,
         error: '',
       });
+
+      const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+
+      useEffect(() => {
+        if(!userInfo) {
+          navigate("/user-signin");
+        }
+      }, [navigate, userInfo]);
 
       useEffect(() => {
         const fetchData = async () => {

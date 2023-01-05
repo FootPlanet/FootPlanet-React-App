@@ -1,6 +1,6 @@
 import { Box, Button, Grid, GridItem, Text, Textarea } from '@chakra-ui/react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminToolbar from '../../../components/navigation/AdminToolbar'
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -12,6 +12,7 @@ const initialValues = {
   capacity:'',
   price:'',
   description:'',
+  complexe: '',
 };
 
 const validationSchema = Yup.object({
@@ -19,18 +20,33 @@ const validationSchema = Yup.object({
   capacity: Yup.string().required('Required field'),
   price: Yup.string().required('Required field'),
   description: Yup.string().required('Required field'),
+  complexe: Yup.string().required('Required field'),
 });
 
 const PitchCreation = ({dispatch}) => {
 
   const [url, setUrl] = useState('');
+  const [complexes, setComplexes] = useState([]);
   const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get('https://footplanet-backend.herokuapp.com/api/complexe');
+        setComplexes(result.data);
+      } catch (err) {
+        toast.error(err);
+      }
+    };
+    fetchData();
+  }, [])
 
   const onSubmit = async (values) => {
     const name = values.name;
     const capacity = values.capacity;
     const price = values.price;
     const description = values.description;
+    const complexe = values.complexe;
     const photo = url;
     if(url === '') {
       toast.error('Image is empty or not yet uploaded');
@@ -47,10 +63,13 @@ const PitchCreation = ({dispatch}) => {
             owner: {
               userId: userInfo.userId,
             },
+            complexe: {
+              complexeId: complexe,
+            }
           }
         );
         dispatch({ type: 'CREATE_SUCCESS' });
-        toast.success('Complexe created!');
+        toast.success('Pitch created!');
       } catch (err) {
         toast.error(err);
       }
@@ -214,6 +233,37 @@ const imageUpload = async (e) => {
                 ></Field>
                 <ErrorMessage
                   name="description"
+                  component="small"
+                  style={{ color: '#19D2C2' }}
+                />
+                </GridItem>
+                <GridItem colSpan={1}>
+                <label
+                  htmlFor="complexe"
+                  style={{ color: '#D9D9D9', fontSize: '0.85rem' }}
+                >
+                  Pitch Complexe
+                </label>
+                <Field
+                  component="select"
+                  id="complexe"
+                  name="complexe"
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#1A1D22',
+                    height: '2.5rem',
+                    border: '1px solid #12323d',
+                    fontSize: '0.85rem',
+                    padding: '0 2%',
+                    color: '#F5F5F5',
+                  }}
+                >
+                  {complexes.map(c => (
+                    <option value={c.complexeId} key={c.complexeId} >{c.name}</option>
+                  ))}
+                </Field>
+                <ErrorMessage
+                  name="complexe"
                   component="small"
                   style={{ color: '#19D2C2' }}
                 />
