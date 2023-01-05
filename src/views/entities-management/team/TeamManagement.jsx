@@ -152,7 +152,7 @@ const TeamManagement = () => {
                 <CardFooter>
                   <ButtonGroup spacing="2">
                   {t.captain.userId == userInfo.userId ? (
-                        <Link>
+                        <Link to="/team-invites">
                         <Button variant="solid" colorScheme="blue">
                           Explore Invites
                         </Button>

@@ -29,6 +29,7 @@ import ComplexeDetails from './views/entities-management/complexe/ComplexeDetail
 import TeamManagement from './views/entities-management/team/TeamManagement';
 import TeamInvites from './views/entities-management/team/TeamInvites';
 import PitchReservation from './views/entities-management/pitch/PitchReservation';
+import TeamDetails from './views/entities-management/team/TeamDetails';
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
               <Route exact path="/team-management" element={<TeamManagement />}></Route>
               <Route exact path="/team-invites" element={<TeamInvites />}></Route>
               <Route exact path="/pitch-reservation/:id" element={<PitchReservation />}></Route>
+              <Route exact path="/team-details/:id" element={<TeamDetails />}></Route>
             </Routes>
           </div>
         </div>
