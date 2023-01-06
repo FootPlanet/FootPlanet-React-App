@@ -131,11 +131,13 @@ const PitchManagement = () => {
                         View details
                       </Button>
                     </Link>
-                    <Link to={`/pitch-reservation/${c.pitchId}`} disabled={c.owner.userId === userInfo.userId} >
+                    {c.owner.userId !== userInfo.userId && (
+                      <Link to={`/pitch-reservation/${c.pitchId}`} >
                       <Button variant="ghost" colorScheme="blue">
                         Make a reservation
                       </Button>
                     </Link>
+                    )}
                   </ButtonGroup>
                 </CardFooter>
               </Card>
@@ -183,11 +185,13 @@ const PitchManagement = () => {
                         View details
                       </Button>
                     </Link>
-                    <Link to={`/pitch-reservation/${c.pitchId}`}>
+                    {c.owner.userId !== userInfo.userId && (
+                      <Link to={`/pitch-reservation/${c.pitchId}`} >
                       <Button variant="ghost" colorScheme="blue">
                         Make a reservation
                       </Button>
                     </Link>
+                    )}
                   </ButtonGroup>
                 </CardFooter>
               </Card>
