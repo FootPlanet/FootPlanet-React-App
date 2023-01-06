@@ -38,7 +38,7 @@ const PitchCreation = ({dispatch}) => {
       }
     };
     fetchData();
-  }, [userInfo.id])
+  }, [userInfo.id, userInfo.userId])
 
   const onSubmit = async (values) => {
     const name = values.name;
@@ -133,7 +133,7 @@ const imageUpload = async (e) => {
                   Pitch capacity
                 </label>
                 <Field
-                  type="text"
+                  type="number"
                   id="capacity"
                   name="capacity"
                   placeholder="Enter pitch capacity"
