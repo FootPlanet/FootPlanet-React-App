@@ -32,7 +32,7 @@ const PitchCreation = ({dispatch}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get(`https://footplanet-backend.herokuapp.com/api/complexe/owner/${userInfo.id}`);
+        const result = await axios.get(`https://footplanet-backend.herokuapp.com/api/complexe/owner/${userInfo.userId}`);
         setComplexes(result.data);
       } catch (err) {
         toast.error(err);
