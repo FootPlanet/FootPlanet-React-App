@@ -189,7 +189,7 @@ const PitchManagement = () => {
                         View details
                       </Button>
                     </Link>
-                    {c.owner.userId !== userInfo.userId && (
+                    {c.owner.userId !== userInfo.userId ? (
                       <Link to={`/pitch-reservation/${c.pitchId}`} >
                       <Button variant="ghost" colorScheme="blue">
                         Make a reservation
