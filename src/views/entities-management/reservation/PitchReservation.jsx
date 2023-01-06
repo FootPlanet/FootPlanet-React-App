@@ -31,7 +31,6 @@ const reducer = (state, action) => {
 
 const validationSchema = Yup.object({
   date: Yup.string().required('Required field'),
-  hour: Yup.string().required('Required field'),
 });
 
 const initialValues = {
@@ -227,7 +226,6 @@ const PitchReservation = () => {
                             color: '#F5F5F5',
                         }}
                         >
-                          <option value="0" selected disabled>Select hour</option>
                           <option value="7">07:00 à 08:00</option>
                           <option value="8">08:00 à 09:00</option>
                           <option value="9">09:00 à 10:00</option>
