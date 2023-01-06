@@ -131,7 +131,7 @@ const PitchManagement = () => {
                         View details
                       </Button>
                     </Link>
-                    <Link to={`/pitch-reservation/${c.pitchId}`}>
+                    <Link to={`/pitch-reservation/${c.pitchId}`} disabled={c.owner.userId === userInfo.userId} >
                       <Button variant="ghost" colorScheme="blue">
                         Make a reservation
                       </Button>
@@ -148,47 +148,57 @@ const PitchManagement = () => {
       </Box>) 
       : showCreation ? (<PitchCreation dispatch={dispatch} />) : showMyPitches && (
         pitches.filter(c => c.owner.userId === userInfo.userId).slice(start,end).map(c => (
-          <Center p="0 0.5%" key={c.pitchId}>
-          <Card maxW="sm" bg="#101010">
-            <CardBody>
-              <Image
-                src={c.photo ? c.photo : noImage}
-                alt={c.name}
-                borderRadius="lg"
-                style={{width: '100%', height: '200px'}}
-              />
-              <Stack mt="6" spacing="3">
-                <Heading size="md" color="#F5F5F5">{c.name}</Heading>
-                <Flex alignItems="center">
-                  <FaMapMarkerAlt color="#F5F5F5"/>
-                  <Text color="#F5F5F5">{c.complexe.name}</Text>
-                </Flex>
-                <Flex alignItems="center">
-                  <FaDollarSign color="#F5F5F5"/>
-                  <Text color="#F5F5F5">{c.price}</Text>
-                </Flex>
-                <Text color="blue.600" fontSize="2xl">
-                  {c.numberPitchs}
-                </Text>
-              </Stack>
-            </CardBody>
-            <Divider />
-            <CardFooter>
-              <ButtonGroup spacing="2">
-                <Link to={`/pitch-details/${c.pitchId}`}>
-                  <Button variant="solid" colorScheme="blue">
-                    View details
-                  </Button>
-                </Link>
-                <Link to={`/pitch-reservation/${c.pitchId}`}>
-                  <Button variant="ghost" colorScheme="blue">
-                    Make a reservation
-                  </Button>
-                </Link>
-              </ButtonGroup>
-            </CardFooter>
-          </Card>
-        </Center>
+          <Box>
+        <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
+          <Flex>
+            {filteredPitches.slice(start,end).map(c => (
+            <Center p="0 0.5%" key={c.pitchId}>
+              <Card maxW="sm" bg="#101010">
+                <CardBody>
+                  <Image
+                    src={c.photo ? c.photo : noImage}
+                    alt={c.name}
+                    borderRadius="lg"
+                    style={{width: '100%', height: '200px'}}
+                  />
+                  <Stack mt="6" spacing="3">
+                    <Heading size="md" color="#F5F5F5">{c.name}</Heading>
+                    <Flex alignItems="center">
+                      <FaMapMarkerAlt color="#F5F5F5"/>
+                      <Text color="#F5F5F5">{c.complexe.name}</Text>
+                    </Flex>
+                    <Flex alignItems="center">
+                      <FaDollarSign color="#F5F5F5"/>
+                      <Text color="#F5F5F5">{c.price}</Text>
+                    </Flex>
+                    <Text color="blue.600" fontSize="2xl">
+                      {c.numberPitchs}
+                    </Text>
+                  </Stack>
+                </CardBody>
+                <Divider />
+                <CardFooter>
+                  <ButtonGroup spacing="2">
+                    <Link to={`/pitch-details/${c.pitchId}`}>
+                      <Button variant="solid" colorScheme="blue">
+                        View details
+                      </Button>
+                    </Link>
+                    <Link to={`/pitch-reservation/${c.pitchId}`}>
+                      <Button variant="ghost" colorScheme="blue">
+                        Make a reservation
+                      </Button>
+                    </Link>
+                  </ButtonGroup>
+                </CardFooter>
+              </Card>
+            </Center>
+            ))}
+          
+          </Flex>
+      </Grid>
+      <PitchCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredPitches.length} />
+      </Box>
           ))
       )}
     </Box>

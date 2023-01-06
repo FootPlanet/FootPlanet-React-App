@@ -123,9 +123,11 @@ const ComplexeManagement = () => {
                 <Divider />
                 <CardFooter>
                   <ButtonGroup spacing="2">
+                  <Link to="/pitch-management">
                     <Button variant="solid" colorScheme="blue">
                       Explore pitches
                     </Button>
+                   </Link> 
                     <Link to={`/complexe-details/${c.complexeId}`}>
                       <Button variant="ghost" colorScheme="blue">
                         View info
@@ -142,41 +144,52 @@ const ComplexeManagement = () => {
       </Box>) 
       : showCreation ? (<ComplexeCreation dispatch={dispatch} />) : showMyComplexes && (
         complexes.filter(c => c.owner.userId == userInfo.userId).slice(start,end).map(c => (
-          <Center p="0 0.5%" key={c.complexeId}>
-            <Card maxW="sm" bg="#101010">
-              <CardBody>
-                <Image
-                  src={c.photo ? c.photo : noImage}
-                  alt={c.name}
-                  borderRadius="lg"
-                  style={{width: '100%', height: '200px'}}
-                />
-                <Stack mt="6" spacing="3">
-                  <Heading size="md" color="#F5F5F5">{c.name}</Heading>
-                  <Flex alignItems="center">
-                    <FaMapMarkerAlt color="#F5F5F5"/>
-                    <Text color="#F5F5F5">{c.location}</Text>
-                  </Flex>
-                  <Text color="blue.600" fontSize="2xl">
-                    {c.numberPitchs}
-                  </Text>
-                </Stack>
-              </CardBody>
-              <Divider />
-              <CardFooter>
-                <ButtonGroup spacing="2">
-                  <Button variant="solid" colorScheme="blue">
-                    Explore pitches
-                  </Button>
-                  <Link to={`/complexe-details/${c.complexeId}`}>
-                    <Button variant="ghost" colorScheme="blue">
-                      View info
-                    </Button>
-                  </Link>
-                </ButtonGroup>
-              </CardFooter>
-            </Card>
-          </Center>
+          <Box>
+          <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
+            <Flex>
+              {filteredComplexes.slice(start,end).map(c => (
+              <Center p="0 0.5%" key={c.complexeId}>
+                <Card maxW="sm" bg="#101010">
+                  <CardBody>
+                    <Image
+                      src={c.photo ? c.photo : noImage}
+                      alt={c.name}
+                      borderRadius="lg"
+                      style={{width: '100%', height: '200px'}}
+                    />
+                    <Stack mt="6" spacing="3">
+                      <Heading size="md" color="#F5F5F5">{c.name}</Heading>
+                      <Flex alignItems="center">
+                        <FaMapMarkerAlt color="#F5F5F5"/>
+                        <Text color="#F5F5F5">{c.location}</Text>
+                      </Flex>
+                      <Text color="blue.600" fontSize="2xl">
+                        {c.numberPitchs}
+                      </Text>
+                    </Stack>
+                  </CardBody>
+                  <Divider />
+                  <CardFooter>
+                    <ButtonGroup spacing="2">
+                    <Link to="/pitch-management">
+                      <Button variant="solid" colorScheme="blue">
+                        Explore pitches
+                      </Button>
+                    </Link>
+                      <Link to={`/complexe-details/${c.complexeId}`}>
+                        <Button variant="ghost" colorScheme="blue">
+                          View info
+                        </Button>
+                      </Link>
+                    </ButtonGroup>
+                  </CardFooter>
+                </Card>
+              </Center>
+              ))}
+            </Flex>
+        </Grid>
+        <ComplexeCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredComplexes.length} />
+        </Box>
           ))
       )}
     </Box>

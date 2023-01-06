@@ -123,49 +123,16 @@ const TeamManagement = () => {
       <TeamCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredTeams.length} />
       </Box>) 
       : showCreation ? (<TeamCreation dispatch={dispatch} />) : showMyTeams && (
+        <Box>
         <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
         <Flex>
         {teams.filter(t => t.captain.userId == userInfo.userId).slice(start,end).map(t => (
-          <Center p="0 0.5%" key={t.teamId}>
-            <Card maxW="sm" bg="#101010">
-              <CardBody>
-                <Stack mt="6" spacing="3">
-                  <Heading size="md" color="#F5F5F5">{t.name}</Heading>
-                  <Flex alignItems="center">
-                    <FaMapMarkerAlt color="#F5F5F5"/>
-                    <Text color="#F5F5F5">{t.captain.fullname}</Text>
-                  </Flex>
-                  <Text color="blue.600" fontSize="2xl">
-                    {t.members.length}/{t.capacity}
-                  </Text>
-                </Stack>
-              </CardBody>
-              <Divider />
-              <CardFooter>
-                <ButtonGroup spacing="2">
-                    {t.captain.userId == userInfo.userId ? (
-                        <Link>
-                        <Button variant="solid" colorScheme="blue">
-                          Explore Invites
-                        </Button>
-                    </Link>
-                    ) : (
-                        <Button variant="solid" colorScheme="blue">
-                            Join
-                        </Button>
-                    )}
-                  <Link to={`/team-details/${t.teamId}`}>
-                    <Button variant="ghost" colorScheme="blue">
-                      View info
-                    </Button>
-                  </Link>
-                </ButtonGroup>
-              </CardFooter>
-            </Card>
-          </Center>
+          <TeamComponent t={t} invitations={invitations} />
           ))}
       </Flex>
     </Grid>
+      <TeamCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredTeams.length} />
+      </Box>
       )}
     </Box>
   );
