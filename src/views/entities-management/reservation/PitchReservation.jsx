@@ -89,14 +89,14 @@ const PitchReservation = () => {
     return actions.order.capture().then(async function (details) {
       try {
         const {data} = await axios.post('https://footplanet-backend.herokuapp.com/api/reservation', {
-          user: {
-            userId: userInfo.userId,
+          "user": {
+            "userId": userInfo.userId,
           },
-          pitch: {
-            pitchId: pitch.pitchId,
+          "pitch": {
+            "pitchId": pitch.pitchId,
           },
           reservationDate,
-          reservationPrice: pitch.price,
+          "reservationPrice": pitch.price,
         });
         toast.success("Reserved successfully");
       } catch (err) {
