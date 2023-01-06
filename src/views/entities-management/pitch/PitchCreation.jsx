@@ -56,16 +56,16 @@ const PitchCreation = ({dispatch}) => {
         const { data } = await axios.post(
           'https://footplanet-backend.herokuapp.com/api/pitch',
           {
-            name,
-            capacity,
-            price,
-            photo,
-            description,
-            owner: {
-              userId: id,
+            "name": name,
+            "capacity": capacity,
+            "price": price,
+            "photo": photo,
+            "description": description,
+            "owner": {
+              "userId": id,
             },
-            complexe: {
-              complexeId: complexe,
+            "complexe": {
+              "complexeId": complexe,
             }
           }
         );
