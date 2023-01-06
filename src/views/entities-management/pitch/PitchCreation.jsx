@@ -60,11 +60,11 @@ const PitchCreation = ({dispatch}) => {
             price,
             photo,
             description,
-            "owner": {
-              "userId": userInfo.userId,
+            owner: {
+              userId: userInfo.userId,
             },
-            "complexe": {
-              "complexeId": complexe,
+            complexe: {
+              complexeId: complexe,
             }
           }
         );

@@ -49,8 +49,8 @@ const ComplexeCreation = ({dispatch}) => {
             longitude,
             photo,
             description,
-            "owner": {
-              "userId": userInfo.userId,
+            owner: {
+              userId: userInfo.userId,
             },
           }
         );

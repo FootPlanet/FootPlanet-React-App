@@ -33,8 +33,8 @@ const TeamCreation = ({dispatch}) => {
           {
             name,
             capacity,
-            "captain": {
-              "userId": userInfo.userId,
+            captain: {
+              userId: userInfo.userId,
             },
           }
         );
