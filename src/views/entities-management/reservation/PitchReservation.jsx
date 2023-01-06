@@ -59,14 +59,6 @@ const PitchReservation = () => {
   }, [navigate, userInfo]);
 
   useEffect(() => {
-    if(pitch !== null) {
-      if(userInfo.userId === pitch.owner.userId) {
-        navigate("/pitch-management");
-      }
-    }
-  }, [navigate, pitch, pitch.owner.userId, userInfo.userId]);
-
-  useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
