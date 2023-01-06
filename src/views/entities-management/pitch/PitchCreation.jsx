@@ -20,6 +20,7 @@ const validationSchema = Yup.object({
   capacity: Yup.string().required('Required field'),
   price: Yup.string().required('Required field'),
   description: Yup.string().required('Required field'),
+  complexe: Yup.string().required('Required field'),
 });
 
 const PitchCreation = ({dispatch}) => {
@@ -83,6 +84,10 @@ const imageUpload = async (e) => {
   const {data} = await axios.post('https://api.cloudinary.com/v1_1/dk9akkkta/image/upload', formData);
   setUrl(data.secure_url);
 }
+
+  if(complexes == null) {
+    return;
+  }
 
   return (
     <Box bg="#080808" h="100vh">
@@ -258,6 +263,7 @@ const imageUpload = async (e) => {
                     color: '#F5F5F5',
                   }}
                 >
+                  <option value="">Select a complexe</option>
                   {complexes.map(c => (
                     <option value={c.complexeId} key={c.complexeId} >{c.name}</option>
                   ))}
