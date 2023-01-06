@@ -32,14 +32,14 @@ const PitchCreation = ({dispatch}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await axios.get('https://footplanet-backend.herokuapp.com/api/complexe');
+        const result = await axios.get(`https://footplanet-backend.herokuapp.com/api/complexe/owner/${userInfo.id}`);
         setComplexes(result.data);
       } catch (err) {
         toast.error(err);
       }
     };
     fetchData();
-  }, [])
+  }, [userInfo.id])
 
   const onSubmit = async (values) => {
     const name = values.name;
