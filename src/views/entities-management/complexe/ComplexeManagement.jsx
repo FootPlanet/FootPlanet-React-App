@@ -116,7 +116,7 @@ const ComplexeManagement = () => {
                       <Text color="#F5F5F5">{c.location}</Text>
                     </Flex>
                     <Text color="blue.600" fontSize="2xl">
-                      {c.numberPitchs}
+                      {c.numberPitchs} pitches
                     </Text>
                   </Stack>
                 </CardBody>
@@ -164,7 +164,7 @@ const ComplexeManagement = () => {
                         <Text color="#F5F5F5">{c.location}</Text>
                       </Flex>
                       <Text color="blue.600" fontSize="2xl">
-                        {c.numberPitchs}
+                        {c.numberPitchs} pitches
                       </Text>
                     </Stack>
                   </CardBody>
