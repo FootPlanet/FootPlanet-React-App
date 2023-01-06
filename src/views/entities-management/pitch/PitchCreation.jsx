@@ -259,6 +259,7 @@ const imageUpload = async (e) => {
                     color: '#F5F5F5',
                   }}
                 >
+                  <option selected disabled>Select a complexe</option>
                   {complexes.map(c => (
                     <option value={c.complexeId} key={c.complexeId} >{c.name}</option>
                   ))}
