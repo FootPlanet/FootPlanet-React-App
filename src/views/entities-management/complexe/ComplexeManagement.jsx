@@ -143,11 +143,10 @@ const ComplexeManagement = () => {
       <ComplexeCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredComplexes.length} />
       </Box>) 
       : showCreation ? (<ComplexeCreation dispatch={dispatch} />) : showMyComplexes && (
-        complexes.filter(c => c.owner.userId == userInfo.userId).slice(start,end).map(c => (
           <Box>
           <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
             <Flex>
-              {filteredComplexes.slice(start,end).map(c => (
+              {filteredComplexes.filter(c => c.owner.userId == userInfo.userId).slice(start,end).map(c => (
               <Center p="0 0.5%" key={c.complexeId}>
                 <Card maxW="sm" bg="#101010">
                   <CardBody>
@@ -190,7 +189,6 @@ const ComplexeManagement = () => {
         </Grid>
         <ComplexeCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredComplexes.length} />
         </Box>
-          ))
       )}
     </Box>
   );

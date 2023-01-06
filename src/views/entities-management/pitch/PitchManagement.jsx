@@ -147,11 +147,10 @@ const PitchManagement = () => {
       <PitchCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredPitches.length} />
       </Box>) 
       : showCreation ? (<PitchCreation dispatch={dispatch} />) : showMyPitches && (
-        pitches.filter(c => c.owner.userId === userInfo.userId).slice(start,end).map(c => (
           <Box>
         <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
           <Flex>
-            {filteredPitches.slice(start,end).map(c => (
+            {filteredPitches.filter(c => c.owner.userId === userInfo.userId).slice(start,end).map(c => (
             <Center p="0 0.5%" key={c.pitchId}>
               <Card maxW="sm" bg="#101010">
                 <CardBody>
@@ -199,7 +198,6 @@ const PitchManagement = () => {
       </Grid>
       <PitchCardsNavigation start={[start, setStart]} end={[end, setEnd]} length={filteredPitches.length} />
       </Box>
-          ))
       )}
     </Box>
   );

@@ -126,7 +126,7 @@ const TeamManagement = () => {
         <Box>
         <Grid templateColumns="repeat(3, 1fr)" gap={6} margin="0 1%" padding="1%">
         <Flex>
-        {teams.filter(t => t.captain.userId == userInfo.userId).slice(start,end).map(t => (
+        {filteredTeams.filter(t => t.captain.userId == userInfo.userId).slice(start,end).map(t => (
           <TeamComponent t={t} invitations={invitations} />
           ))}
       </Flex>
