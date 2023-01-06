@@ -60,8 +60,7 @@ const UserSignUp = () => {
           fullname,
         }
       );
-      localStorage.setItem('userInfo', JSON.stringify(data));
-      navigate('/complexe-management');
+      navigate('/user-signin');
     } catch (err) {
       toast.error(err);
     }
