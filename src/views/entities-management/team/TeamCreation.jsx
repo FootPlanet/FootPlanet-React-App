@@ -27,6 +27,7 @@ const TeamCreation = ({dispatch}) => {
   const onSubmit = async (values) => {
     const name = values.name;
     const capacity = values.capacity;
+    const id = userInfo.userId;
     try {
         const { data } = await axios.post(
           'https://footplanet-backend.herokuapp.com/api/teams',
@@ -34,7 +35,7 @@ const TeamCreation = ({dispatch}) => {
             name,
             capacity,
             captain: {
-              userId: userInfo.userId,
+              userId: id,
             },
           }
         );

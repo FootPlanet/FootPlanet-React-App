@@ -35,7 +35,7 @@ const ComplexeCreation = ({dispatch}) => {
     const longitude = values.longitude;
     const description = values.description;
     const photo = url;
-    console.log(userInfo.userId);
+    const id = userInfo.userId;
     if(url == '') {
       toast.error('Image is empty or not yet uploaded');
     }else {
@@ -50,7 +50,7 @@ const ComplexeCreation = ({dispatch}) => {
             photo,
             description,
             owner: {
-              userId: userInfo.userId,
+              userId: id,
             },
           }
         );

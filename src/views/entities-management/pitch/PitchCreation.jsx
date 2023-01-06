@@ -48,6 +48,7 @@ const PitchCreation = ({dispatch}) => {
     const description = values.description;
     const complexe = values.complexe;
     const photo = url;
+    const id = userInfo.userId;
     if(url === '') {
       toast.error('Image is empty or not yet uploaded');
     }else {
@@ -61,7 +62,7 @@ const PitchCreation = ({dispatch}) => {
             photo,
             description,
             owner: {
-              userId: userInfo.userId,
+              userId: id,
             },
             complexe: {
               complexeId: complexe,
