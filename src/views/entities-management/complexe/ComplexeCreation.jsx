@@ -43,14 +43,14 @@ const ComplexeCreation = ({dispatch}) => {
         const { data } = await axios.post(
           'https://footplanet-backend.herokuapp.com/api/complexe',
           {
-            "name": name,
-            "location": location,
-            "latitude": latitude,
-            "longitude": longitude,
-            "photo": photo,
-            "description": description,
-            "owner": {
-              "userId": id,
+            name,
+            location,
+            latitude,
+            longitude,
+            photo,
+            description,
+            owner: {
+              userId: id,
             },
           }
         );

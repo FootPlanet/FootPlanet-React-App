@@ -32,10 +32,10 @@ const TeamCreation = ({dispatch}) => {
         const { data } = await axios.post(
           'https://footplanet-backend.herokuapp.com/api/teams',
           {
-            "name": name,
-            "capacity": capacity,
-            "captain": {
-              "userId": id,
+            name,
+            capacity,
+            captain: {
+              userId: id,
             },
           }
         );
